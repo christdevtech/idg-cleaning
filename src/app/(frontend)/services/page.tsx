@@ -6,6 +6,7 @@ import { Pagination } from '@/components/Pagination'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
+import { ArchiveHero } from '@/heros/ArchiveHero'
 import PageClient from './page.client'
 
 export const dynamic = 'force-static'
@@ -27,14 +28,21 @@ export default async function Page() {
     },
   })
 
+  const archiveHeroes = await payload.findGlobal({
+    slug: 'archive-heroes',
+  })
+
+  const heroData = archiveHeroes?.servicesHero
+
   return (
-    <div className="pt-24 pb-24">
+    <div className="pb-24">
       <PageClient />
-      <div className="container mb-16">
-        <div className="prose dark:prose-invert max-w-none">
-          <h1>Services</h1>
-        </div>
-      </div>
+
+      <ArchiveHero
+        title={heroData?.title || 'Services'}
+        subtitle={heroData?.subtitle || 'IDG Cleaning Services'}
+        heroImage={heroData?.heroImage!}
+      />
 
       <div className="container mb-8">
         <PageRange

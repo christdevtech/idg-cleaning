@@ -29,7 +29,7 @@ export const ServiceHero: React.FC<{
           className="h-full w-full"
           resource={heroImage}
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/70 to-transparent h-[250px]" />
       </div>
     </div>
   )

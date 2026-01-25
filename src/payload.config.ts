@@ -15,6 +15,7 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { ArchiveHeroes } from './globals/ArchiveHeroes'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -77,7 +78,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Categories, Users, Services],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [Header, Footer, ArchiveHeroes],
   plugins,
   secret: process.env.PAYLOAD_SECRET,
   sharp,

@@ -121,7 +121,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ header }) => {
           </div>
         </div>
       )}
-      <div className="container py-6 flex items-center justify-between">
+      <div className="container py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           <Logo className="invert-100 dark:invert-0" />
           <div className="hidden md:flex flex-col">
