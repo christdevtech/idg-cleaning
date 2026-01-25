@@ -41,7 +41,7 @@ export default async function Page() {
       <ArchiveHero
         title={heroData?.title || 'Posts'}
         subtitle={heroData?.subtitle || 'IDG Cleaning Services'}
-        heroImage={heroData?.heroImage!}
+        heroImage={heroData?.heroImage || ''}
       />
 
       <div className="container mb-8">
