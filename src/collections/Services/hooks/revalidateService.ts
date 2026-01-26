@@ -32,14 +32,9 @@ export const revalidateService: CollectionAfterChangeHook<Service> = ({
   return doc
 }
 
-export const revalidateDelete: CollectionAfterDeleteHook<Service> = ({
-  doc,
-  req: { payload, context },
-}) => {
+export const revalidateDelete: CollectionAfterDeleteHook<Service> = ({ doc, req: { context } }) => {
   if (!context.disableRevalidate) {
     const path = `/services/${doc.slug}`
-
-    payload.logger.info(`Revalidating service at path: ${path}`)
 
     revalidatePath(path)
     revalidateTag('services-sitemap')
