@@ -3,13 +3,13 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { unstable_cache } from 'next/cache'
 
-const getPagesSitemap = unstable_cache(
+const getServicesSitemap = unstable_cache(
   async () => {
     const payload = await getPayload({ config })
     const SITE_URL = process.env.NEXT_PUBLIC_SERVER_URL || 'https://idgcleaninglimited.com'
 
     const results = await payload.find({
-      collection: 'pages',
+      collection: 'services',
       overrideAccess: false,
       draft: false,
       depth: 0,
@@ -28,38 +28,25 @@ const getPagesSitemap = unstable_cache(
 
     const dateFallback = new Date().toISOString()
 
-    const defaultSitemap = [
-      {
-        loc: `${SITE_URL}/search`,
-        lastmod: dateFallback,
-      },
-      {
-        loc: `${SITE_URL}/posts`,
-        lastmod: dateFallback,
-      },
-    ]
-
     const sitemap = results.docs
       ? results.docs
-          .filter((page) => Boolean(page?.slug))
-          .map((page) => {
-            return {
-              loc: page?.slug === 'home' ? `${SITE_URL}/` : `${SITE_URL}/${page?.slug}`,
-              lastmod: page.updatedAt || dateFallback,
-            }
-          })
+          .filter((service) => Boolean(service?.slug))
+          .map((service) => ({
+            loc: `${SITE_URL}/services/${service?.slug}`,
+            lastmod: service.updatedAt || dateFallback,
+          }))
       : []
 
-    return [...defaultSitemap, ...sitemap]
+    return sitemap
   },
-  ['pages-sitemap'],
+  ['services-sitemap'],
   {
-    tags: ['pages-sitemap'],
+    tags: ['services-sitemap'],
   },
 )
 
 export async function GET() {
-  const sitemap = await getPagesSitemap()
+  const sitemap = await getServicesSitemap()
 
   return getServerSideSitemap(sitemap)
 }
