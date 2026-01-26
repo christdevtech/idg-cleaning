@@ -63,11 +63,11 @@ const StatsSlider: React.FC<{ title: string; stats: any[] }> = ({ title, stats }
   return (
     <div className="relative rounded-3xl bg-gradient-to-r from-blue-500 via-blue-500 to-blue-600 text-white shadow-lg">
       <div className="absolute inset-y-0 right-0 w-40 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.35),transparent_60%),radial-gradient(circle_at_bottom,rgba(255,255,255,0.25),transparent_55%)] opacity-90" />
-      <div className="relative px-5 pt-5 pb-4 md:px-8 md:pt-6 md:pb-6">
+      <div className="relative px-5 pt-5 pb-4 md:px-8 md:pt-6 md:pb-6 justify-center flex flex-col items-center">
         <div className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-white/70">
           {title}
         </div>
-        <div className="flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible">
+        <div className="flex gap-4 overflow-x-auto pb-2 justify-center flex-wrap md:gap-6 md:overflow-visible">
           {items.map((item, index) => (
             <div
               key={index}
