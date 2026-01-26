@@ -1,4 +1,4 @@
-import type { CollectionAfterChangeHook } from 'payload'
+import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
 
 import { revalidatePath, revalidateTag } from 'next/cache'
 
@@ -28,6 +28,21 @@ export const revalidateService: CollectionAfterChangeHook<Service> = ({
       revalidatePath(oldPath)
       revalidateTag('services-sitemap')
     }
+  }
+  return doc
+}
+
+export const revalidateDelete: CollectionAfterDeleteHook<Service> = ({
+  doc,
+  req: { payload, context },
+}) => {
+  if (!context.disableRevalidate) {
+    const path = `/services/${doc.slug}`
+
+    payload.logger.info(`Revalidating service at path: ${path}`)
+
+    revalidatePath(path)
+    revalidateTag('services-sitemap')
   }
   return doc
 }
