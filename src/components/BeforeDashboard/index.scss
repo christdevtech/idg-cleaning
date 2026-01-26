@@ -9,13 +9,11 @@
     }
   }
 
-  &__instructions {
-    list-style: decimal;
-    margin-bottom: base(0.5);
-
-    & li {
-      width: 100%;
-    }
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: base(0.5);
+    margin-top: base(1);
   }
 
   & a:hover {
