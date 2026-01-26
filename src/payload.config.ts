@@ -1,4 +1,5 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
@@ -71,6 +72,19 @@ export default buildConfig({
       ],
     },
   },
+  email: nodemailerAdapter({
+    defaultFromAddress: 'admin@idgcleaninglimited.com',
+    defaultFromName: 'IDG Cleaning Limited',
+    // Nodemailer transportOptions
+    transportOptions: {
+      host: 'mail.spacemail.com',
+      port: 465,
+      auth: {
+        user: process.env.SMTP_USER || '',
+        pass: process.env.SMTP_PASS || '',
+      },
+    },
+  }),
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: mongooseAdapter({
