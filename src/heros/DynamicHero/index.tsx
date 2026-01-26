@@ -200,52 +200,24 @@ export const DynamicHero: React.FC<DynamicHeroProps> = (props) => {
               {partnersVisible && (
                 <div className="flex items-center gap-3">
                   <div className="flex -space-x-3">
-                    {Array.isArray(partners?.avatars) && partners.avatars?.length
-                      ? partners.avatars
-                          .filter((av: any) => av.image && typeof av.image === 'object')
-                          .slice(0, 6)
-                          .map((avatar: any, idx: number) => (
-                            <Image
-                              key={idx}
-                              src={
-                                getMediaUrl((avatar.image as any)?.url || '') ||
-                                '/media/image-post1.webp'
-                              }
-                              alt={(avatar.image as any)?.alt || `Partner ${idx + 1}`}
-                              width={36}
-                              height={36}
-                              className="rounded-full border-2 border-white"
-                            />
-                          ))
-                      : [
-                          // Fallbacks if absolutely nothing is provided, but user said "Dynamic", so maybe handle empty state gracefully?
-                          // For now, mirroring existing behavior: if partnersVisible is true but no avatars, render defaults?
-                          // The 'HomeBanner' had hardcoded fallbacks. Let's keep them if user wants robust 'default' look.
+                    {Array.isArray(partners?.avatars) &&
+                      partners.avatars?.length &&
+                      partners.avatars
+                        .filter((av: any) => av.image && typeof av.image === 'object')
+                        .slice(0, 6)
+                        .map((avatar: any, idx: number) => (
                           <Image
-                            key="p1"
-                            src="/media/image-post1.webp"
-                            alt="Partner 1"
+                            key={idx}
+                            src={
+                              getMediaUrl((avatar.image as any)?.url || '') ||
+                              '/media/image-post1.webp'
+                            }
+                            alt={(avatar.image as any)?.alt || `Partner ${idx + 1}`}
                             width={36}
                             height={36}
                             className="rounded-full border-2 border-white"
-                          />,
-                          <Image
-                            key="p2"
-                            src="/media/image-post2.webp"
-                            alt="Partner 2"
-                            width={36}
-                            height={36}
-                            className="rounded-full border-2 border-white"
-                          />,
-                          <Image
-                            key="p3"
-                            src="/media/image-post3.webp"
-                            alt="Partner 3"
-                            width={36}
-                            height={36}
-                            className="rounded-full border-2 border-white"
-                          />,
-                        ]}
+                          />
+                        ))}
                   </div>
                   <div className="text-sm">
                     <div className="font-semibold">{partners?.value || '200k+'}</div>
