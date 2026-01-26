@@ -14,29 +14,40 @@ const WordSlider: React.FC<{ words: { text: string }[]; speedSeconds: number }> 
   words,
   speedSeconds,
 }) => {
+  const minItems = 20
+  let repeatedWords = [...words]
+  if (words.length > 0) {
+    while (repeatedWords.length < minItems) {
+      repeatedWords = [...repeatedWords, ...words]
+    }
+  }
+
   return (
     <div className="relative overflow-hidden rounded-full border border-white/60 bg-white/70 text-[0.65rem] md:text-xs uppercase tracking-[0.3em] text-slate-500 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-slate-900/70 dark:text-slate-200">
       <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-white via-white/80 to-transparent dark:from-slate-900 dark:via-slate-900/80" />
       <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-white via-white/80 to-transparent dark:from-slate-900 dark:via-slate-900/80" />
       <div className="flex overflow-hidden">
         <div
-          className="flex min-w-full items-center gap-8 animate-marquee"
+          className="flex min-w-full shrink-0 items-center justify-around gap-8 animate-marquee"
           style={{ animationDuration: `${speedSeconds}s` }}
         >
-          {words.map((item, index) => (
-            <div key={index} className="flex items-center gap-3">
+          {repeatedWords.map((item, index) => (
+            <div key={index} className="flex items-center gap-3 whitespace-nowrap">
               <span className="text-[0.55rem] md:text-[0.65rem]">✧</span>
               <span>{item.text}</span>
             </div>
           ))}
         </div>
         <div
-          className="flex min-w-full items-center gap-8 animate-marquee"
+          className="flex min-w-full shrink-0 items-center justify-around gap-8 animate-marquee"
           aria-hidden
           style={{ animationDuration: `${speedSeconds}s` }}
         >
-          {words.map((item, index) => (
-            <div key={words.length + index} className="flex items-center gap-3">
+          {repeatedWords.map((item, index) => (
+            <div
+              key={repeatedWords.length + index}
+              className="flex items-center gap-3 whitespace-nowrap"
+            >
               <span className="text-[0.55rem] md:text-[0.65rem]">✧</span>
               <span>{item.text}</span>
             </div>

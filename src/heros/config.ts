@@ -132,7 +132,7 @@ export const hero: Field = {
     {
       name: 'marqueeSpeedSeconds',
       type: 'number',
-      defaultValue: 12,
+      defaultValue: 25,
       admin: {
         condition: (_, { type } = {}) => type === 'dynamic',
         description: 'Scroll speed for the marquee words (in seconds).',
