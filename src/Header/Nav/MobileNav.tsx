@@ -65,7 +65,7 @@ export const MobileNav: React.FC<{ navItems: Header['navItems'] }> = ({ navItems
               <div className="p-6 flex flex-col h-full">
                 <div className="flex items-center justify-between mb-8">
                   <Link href="/" onClick={() => setIsOpen(false)}>
-                    <Logo className="w-32 invert dark:invert-0" />
+                    <Logo className="w-32" />
                   </Link>
                   <button
                     onClick={() => setIsOpen(false)}

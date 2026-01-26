@@ -123,7 +123,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ header }) => {
       )}
       <div className="container py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
-          <Logo className="invert-100 dark:invert-0" />
+          <Logo className="w-32" />
           <div className="hidden md:flex flex-col">
             <span className="font-semibold text-primary">IDG Cleaning Limited</span>
             <span className="text-xs text-primary">Professional & Reliable</span>
