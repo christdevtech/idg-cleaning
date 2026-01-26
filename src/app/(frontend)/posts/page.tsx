@@ -44,7 +44,7 @@ export default async function Page() {
         heroImage={heroData?.heroImage || ''}
       />
 
-      <div className="container mb-8">
+      <div className="container my-8">
         <PageRange
           collection="posts"
           currentPage={posts.page}

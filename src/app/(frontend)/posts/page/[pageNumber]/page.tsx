@@ -8,6 +8,7 @@ import { getPayload } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
 import { notFound } from 'next/navigation'
+import { ArchiveHero } from '@/heros/ArchiveHero'
 
 export const revalidate = 600
 
@@ -33,16 +34,21 @@ export default async function Page({ params: paramsPromise }: Args) {
     overrideAccess: false,
   })
 
+  const archiveHeroes = await payload.findGlobal({
+    slug: 'archive-heroes',
+  })
+
+  const heroData = archiveHeroes?.postsHero
+
   return (
     <div className="pb-24">
       <PageClient />
-      <div className="container mb-16">
-        <div className="prose dark:prose-invert max-w-none">
-          <h1>Posts</h1>
-        </div>
-      </div>
-
-      <div className="container mb-8">
+      <ArchiveHero
+        title={heroData?.title || 'Posts'}
+        subtitle={heroData?.subtitle || 'IDG Cleaning Services'}
+        heroImage={heroData?.heroImage || ''}
+      />
+      <div className="container my-8">
         <PageRange
           collection="posts"
           currentPage={posts.page}
