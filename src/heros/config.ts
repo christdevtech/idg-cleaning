@@ -124,12 +124,15 @@ export const hero: Field = {
         { text: 'Mopping' },
         { text: 'Dusting' },
         { text: 'Vacuuming' },
+        { text: 'Waxing' },
+        { text: 'Washing' },
+        { text: 'Wiping' },
       ],
     },
     {
       name: 'marqueeSpeedSeconds',
       type: 'number',
-      defaultValue: 28,
+      defaultValue: 12,
       admin: {
         condition: (_, { type } = {}) => type === 'dynamic',
         description: 'Scroll speed for the marquee words (in seconds).',

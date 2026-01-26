@@ -47,6 +47,7 @@ const config = {
     },
     extend: {
       animation: {
+        marquee: 'marquee 25s linear infinite',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'float-slow': 'float 6s ease-in-out infinite',
@@ -109,6 +110,10 @@ const config = {
         sans: ['var(--font-geist-sans)'],
       },
       keyframes: {
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-100%)' },
+        },
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
