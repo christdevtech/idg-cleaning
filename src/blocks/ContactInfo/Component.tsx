@@ -64,7 +64,7 @@ export const ContactInfoBlock: React.FC<ContactInfoBlockProps> = ({
                       <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-0.5">
                         Call Us
                       </p>
-                      <span className="font-semibold text-lg">{phone}</span>
+                      <span className="font-semibold text-md">{phone}</span>
                     </div>
                   </a>
                 )}
@@ -81,7 +81,7 @@ export const ContactInfoBlock: React.FC<ContactInfoBlockProps> = ({
                       <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-0.5">
                         Email Us
                       </p>
-                      <span className="font-semibold text-lg break-all">{email}</span>
+                      <span className="font-semibold text-md no-wrap">{email}</span>
                     </div>
                   </a>
                 )}
