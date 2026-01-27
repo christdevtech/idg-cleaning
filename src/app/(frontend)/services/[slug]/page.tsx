@@ -5,6 +5,7 @@ import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
+import { unstable_cache } from 'next/cache'
 import React, { cache } from 'react'
 import RichText from '@/components/RichText'
 
@@ -138,6 +139,22 @@ const queryServiceBySlug = cache(async ({ slug }: { slug: string }) => {
 
 const queryResults = cache(async () => {
   const { isEnabled: draft } = await draftMode()
+  if (draft) {
+    return fetchServices(true)
+  } else {
+    return getCachedServices()
+  }
+})
+
+const getCachedServices = unstable_cache(
+  async () => {
+    return fetchServices(false)
+  },
+  ['list-services'],
+  { tags: ['list-services'] },
+)
+
+async function fetchServices(draft: boolean) {
   const payload = await getPayload({ config: configPromise })
 
   const result = await payload.find({
@@ -152,9 +169,11 @@ const queryResults = cache(async () => {
       meta: {
         image: true,
         description: true,
+        // @ts-ignore
+        title: true,
       },
     },
   })
 
   return result
-})
+}

@@ -16,7 +16,9 @@ export const revalidateService: CollectionAfterChangeHook<Service> = ({
       payload.logger.info(`Revalidating service at path: ${path}`)
 
       revalidatePath(path)
+      revalidatePath('/services')
       revalidateTag('services-sitemap')
+      revalidateTag('list-services')
     }
 
     // If the service was previously published, we need to revalidate the old path
@@ -26,7 +28,9 @@ export const revalidateService: CollectionAfterChangeHook<Service> = ({
       payload.logger.info(`Revalidating old service at path: ${oldPath}`)
 
       revalidatePath(oldPath)
+      revalidatePath('/services')
       revalidateTag('services-sitemap')
+      revalidateTag('list-services')
     }
   }
   return doc
@@ -37,7 +41,9 @@ export const revalidateDelete: CollectionAfterDeleteHook<Service> = ({ doc, req:
     const path = `/services/${doc.slug}`
 
     revalidatePath(path)
+    revalidatePath('/services')
     revalidateTag('services-sitemap')
+    revalidateTag('list-services')
   }
   return doc
 }
