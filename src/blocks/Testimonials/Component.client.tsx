@@ -22,8 +22,14 @@ export const TestimonialsClient: React.FC<Props> = (props) => {
     <div className="container overflow-visible">
       <Swiper
         modules={[Autoplay, Pagination]}
-        spaceBetween={24}
-        slidesPerView="auto"
+        spaceBetween={16}
+        slidesPerView={1.1}
+        breakpoints={{
+          768: {
+            slidesPerView: 'auto',
+            spaceBetween: 24,
+          },
+        }}
         loop={true}
         autoplay={{
           delay: 5000,
@@ -38,8 +44,11 @@ export const TestimonialsClient: React.FC<Props> = (props) => {
           // Handle potential string vs object mismatch for avatar
           const avatar = review.avatar
 
+          // Platform check - default to google if not specified or explicitly google
+          const isGoogle = !review.platform || review.platform.toLowerCase() === 'google'
+
           return (
-            <SwiperSlide key={index} className="w-[300px] md:w-[350px] lg:w-[400px] h-auto">
+            <SwiperSlide key={index} className="h-auto md:max-w-[450px] lg:max-w-[500px]">
               {/* Fixed width for slides to allow "auto" slidesPerView to show partial slides */}
               <div className="h-full flex flex-col p-6 rounded-2xl bg-white dark:bg-card border border-border shadow-sm hover:shadow-md transition-shadow">
                 {/* Header: Avatar + Name + Date */}
@@ -95,13 +104,19 @@ export const TestimonialsClient: React.FC<Props> = (props) => {
                   {review.content}
                 </p>
 
-                {/* Google Logo / Brand indicator (Optional, to mimic Google Reviews style) */}
+                {/* Platform Indicator */}
                 <div className="mt-auto pt-4 flex items-center opacity-50">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
-                    alt="Google"
-                    className="h-4"
-                  />
+                  {isGoogle ? (
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                      alt="Google"
+                      className="h-4"
+                    />
+                  ) : (
+                    <span className="text-xs font-medium uppercase tracking-wider">
+                      {review.platform}
+                    </span>
+                  )}
                 </div>
               </div>
             </SwiperSlide>

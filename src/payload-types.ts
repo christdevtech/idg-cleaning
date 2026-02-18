@@ -1234,6 +1234,7 @@ export interface TestimonialsBlock {
         author: string;
         avatar?: (string | null) | Media;
         rating: number;
+        platform?: string | null;
         date?: string | null;
         content: string;
         id?: string | null;
@@ -1844,6 +1845,7 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
         author?: T;
         avatar?: T;
         rating?: T;
+        platform?: T;
         date?: T;
         content?: T;
         id?: T;

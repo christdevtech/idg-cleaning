@@ -59,6 +59,12 @@ export const Testimonials: Block = {
           label: 'Rating (1-5)',
         },
         {
+          name: 'platform',
+          type: 'text',
+          defaultValue: 'google',
+          label: 'Platform',
+        },
+        {
           name: 'date',
           type: 'date',
           label: 'Date',
