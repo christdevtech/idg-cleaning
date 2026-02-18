@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import type { TestimonialsBlock } from '@/payload-types' // This type might not exist yet, but will be generated
 import { Media } from '@/components/Media'
+import { formatTimeAgo } from '@/utilities/formatTimeAgo'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -63,7 +64,9 @@ export const TestimonialsClient: React.FC<Props> = (props) => {
                   <div className="flex flex-col">
                     <span className="font-semibold text-sm text-foreground">{review.author}</span>
                     {review.date && (
-                      <span className="text-xs text-muted-foreground">{review.date}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {formatTimeAgo(review.date)}
+                      </span>
                     )}
                   </div>
                 </div>

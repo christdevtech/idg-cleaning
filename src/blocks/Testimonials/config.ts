@@ -60,8 +60,8 @@ export const Testimonials: Block = {
         },
         {
           name: 'date',
-          type: 'text',
-          label: 'Date (e.g. "2 days ago")',
+          type: 'date',
+          label: 'Date',
         },
         {
           name: 'content',
