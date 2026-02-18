@@ -285,6 +285,7 @@ export interface Page {
     | ServicesSliderBlock
     | FeatureCardBlock
     | ContactInfoBlock
+    | TestimonialsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1209,6 +1210,41 @@ export interface ContactInfoBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock".
+ */
+export interface TestimonialsBlock {
+  title?: string | null;
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  reviews?:
+    | {
+        author: string;
+        avatar?: (string | null) | Media;
+        rating: number;
+        date?: string | null;
+        content: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1576,6 +1612,7 @@ export interface PagesSelect<T extends boolean = true> {
         servicesSlider?: T | ServicesSliderBlockSelect<T>;
         featureCard?: T | FeatureCardBlockSelect<T>;
         contactInfo?: T | ContactInfoBlockSelect<T>;
+        testimonials?: T | TestimonialsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1791,6 +1828,26 @@ export interface ContactInfoBlockSelect<T extends boolean = true> {
   email?: T;
   address?: T;
   serviceAreas?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock_select".
+ */
+export interface TestimonialsBlockSelect<T extends boolean = true> {
+  title?: T;
+  introContent?: T;
+  reviews?:
+    | T
+    | {
+        author?: T;
+        avatar?: T;
+        rating?: T;
+        date?: T;
+        content?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -2249,24 +2306,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: string;
-  topBar?: {
-    enabled?: boolean | null;
-    contactDetails?:
-      | {
-          icon: 'mapPin' | 'phone' | 'mail' | 'clock';
-          text: string;
-          link?: string | null;
-          id?: string | null;
-        }[]
-      | null;
-    socialLinks?:
-      | {
-          platform: 'facebook' | 'twitter' | 'instagram' | 'linkedin' | 'youtube';
-          url: string;
-          id?: string | null;
-        }[]
-      | null;
-  };
   navItems?:
     | {
         link: {
@@ -2320,6 +2359,24 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  topBar?: {
+    enabled?: boolean | null;
+    contactDetails?:
+      | {
+          icon: 'mapPin' | 'phone' | 'mail' | 'clock';
+          text: string;
+          link?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    socialLinks?:
+      | {
+          platform: 'facebook' | 'twitter' | 'instagram' | 'linkedin' | 'youtube';
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2382,26 +2439,6 @@ export interface ArchiveHero {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
-  topBar?:
-    | T
-    | {
-        enabled?: T;
-        contactDetails?:
-          | T
-          | {
-              icon?: T;
-              text?: T;
-              link?: T;
-              id?: T;
-            };
-        socialLinks?:
-          | T
-          | {
-              platform?: T;
-              url?: T;
-              id?: T;
-            };
-      };
   navItems?:
     | T
     | {
@@ -2434,6 +2471,26 @@ export interface HeaderSelect<T extends boolean = true> {
               id?: T;
             };
         id?: T;
+      };
+  topBar?:
+    | T
+    | {
+        enabled?: T;
+        contactDetails?:
+          | T
+          | {
+              icon?: T;
+              text?: T;
+              link?: T;
+              id?: T;
+            };
+        socialLinks?:
+          | T
+          | {
+              platform?: T;
+              url?: T;
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

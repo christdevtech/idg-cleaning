@@ -12,6 +12,7 @@ import { ServicesShowcase } from '@/blocks/ServicesShowcase/Component'
 import { ServicesSliderBlock } from '@/blocks/ServicesSlider/Component'
 import { FeatureCard } from '@/blocks/FeatureCard/Component'
 import { ContactInfoBlock } from './ContactInfo/Component'
+import { TestimonialsComponent } from '@/blocks/Testimonials/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -24,6 +25,7 @@ const blockComponents = {
   servicesSlider: ServicesSliderBlock,
   featureCard: FeatureCard,
   contactInfo: ContactInfoBlock,
+  testimonials: TestimonialsComponent,
 }
 
 export const RenderBlocks: React.FC<{

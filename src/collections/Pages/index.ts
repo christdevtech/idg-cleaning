@@ -13,6 +13,7 @@ import { FeatureCard } from '../../blocks/FeatureCard/config'
 import { ServicesShowcase } from '../../blocks/ServicesShowcase/config'
 import { ServicesSlider } from '../../blocks/ServicesSlider/config'
 import { ContactInfo } from '../../blocks/ContactInfo/config'
+import { Testimonials } from '../../blocks/Testimonials/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
@@ -88,6 +89,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ServicesSlider,
                 FeatureCard,
                 ContactInfo,
+                Testimonials,
               ],
               required: true,
               admin: {
